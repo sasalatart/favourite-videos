@@ -1,0 +1,26 @@
+{
+  "name": "favourite-videos",
+  "description": "Collect your favourite youtube videos here :)",
+  "main": "index.js",
+  "authors": [
+    "Sebastián Salata R-T"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "MEAN",
+    "Stack",
+    "MongoDB",
+    "NodeJS",
+    "ExpressJS",
+    "AngularJS"
+  ],
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
