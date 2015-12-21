@@ -1,9 +1,33 @@
-var express = require('express'),
-    wagner  = require('wagner-core');
+var express     = require('express'),
+    morgan      = require('morgan'),
+    mongoose    = require('mongoose'),
+    bodyParser  = require('body-parser'),
+    session     = require('express-session'),
+    passport    = require('passport'),
+    flash       = require('connect-flash');
 
 var app = express();
 
-require('./models/models')(wagner);
+mongoose.connect('mongodb://localhost:27017/favourite-videos');
+
+require('./config/passport')(passport);
+
+app.use(morgan('dev'));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(session({
+  secret: process.env.SECRET,
+  saveUninitialized: true,
+  resave: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
+
+app.use('/bower_components',  express.static('bower_components'));
+app.use(express.static('client'));
+
+require('./routes')(app, passport);
 
 app.listen(3000);
 console.log('Listening on port 3000!');
