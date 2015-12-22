@@ -1,7 +1,7 @@
 (function() {
   'use strict'
 
-  angular.module('favourite-videos').directive('userLogin', userLogin);
+  angular.module('favouriteVideos').directive('userLogin', userLogin);
 
   function userLogin() {
     var directive = {

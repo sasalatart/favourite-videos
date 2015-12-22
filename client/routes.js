@@ -1,5 +1,5 @@
 (function() {
-  angular.module('favourite-videos').config(router);
+  angular.module('favouriteVideos').config(router);
 
   function router($routeProvider) {
     $routeProvider.

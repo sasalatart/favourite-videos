@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  angular.module('favourite-videos').service('signupService', signupService);
+  angular.module('favouriteVideos').service('signupService', signupService);
 
   function signupService($http, $window) {
     this.signup = function(userForm) {

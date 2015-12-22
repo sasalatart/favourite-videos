@@ -1,7 +1,7 @@
 (function() {
   'use strict'
 
-  angular.module('favourite-videos').directive('userDashboard', userDashboard);
+  angular.module('favouriteVideos').directive('userDashboard', userDashboard);
 
   function userDashboard() {
     var directive = {
@@ -14,18 +14,10 @@
     return directive;
   }
 
-  dashboardController.$inject = ['sessionService', '$resource', '$window'];
+  dashboardController.$inject = ['sessionService', 'Video', '$window'];
 
-  function dashboardController(sessionService, $resource, $window) {
+  function dashboardController(sessionService, Video, $window) {
     var vm = this;
-    var Video = $resource('/users/:user_id/videos/:video_id', {
-      user_id: '@user_id',
-      video_id: '@video_id'
-    }, {
-      update: {
-        method: 'PUT'
-      }
-    });
     vm.videoForm = {};
     vm.videos = {};
 

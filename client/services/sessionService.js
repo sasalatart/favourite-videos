@@ -1,7 +1,7 @@
 (function() {
   'use strict'
 
-  angular.module('favourite-videos').service('sessionService', sessionService);
+  angular.module('favouriteVideos').service('sessionService', sessionService);
 
   function sessionService($http, $q, $window) {
     var vm = this;
