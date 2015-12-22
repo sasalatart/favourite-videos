@@ -15,6 +15,11 @@
       when('/dashboard', {
         template: '<user-dashboard></user-dashboard>'
       }).
+      when('/videos/:id', {
+        templateUrl: 'templates/video.html',
+        controller: 'videoController',
+        controllerAs: 'videoCtrl'
+      }).
       otherwise({
         redirectTo: '/'
       });
