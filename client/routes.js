@@ -7,10 +7,13 @@
         templateUrl: 'templates/welcome.html'
       }).
       when('/signup', {
-        templateUrl: 'templates/signup.html'
+        template: '<user-signup></user-signup>'
       }).
       when('/login', {
-        templateUrl: 'templates/login.html'
+        template: '<user-login></user-login>'
+      }).
+      when('/dashboard', {
+        template: '<user-dashboard></user-dashboard>'
       }).
       otherwise({
         redirectTo: '/'

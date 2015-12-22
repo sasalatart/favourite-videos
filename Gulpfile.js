@@ -9,3 +9,7 @@ gulp.task('build', function() {
     }))
     .pipe(gulp.dest('client/bin/'))
 });
+
+gulp.task('watch', function() {
+  gulp.watch('client/**/*.js', ['build']);
+});

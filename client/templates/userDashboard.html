@@ -1,0 +1,37 @@
+<h1>{{dashboardCtrl.identity.local.email}}</h1>
+
+<form ng-submit="dashboardCtrl.newVideo()">
+  <label for="title">title</label>
+  <input id="title" name="title" ng-model="dashboardCtrl.videoForm.title" type="text">
+
+  <label for="url">URL</label>
+  <input id="url" name="url" ng-model="dashboardCtrl.videoForm.url" type="text">
+
+  <button type="submit">Add video</button>
+</form>
+
+<table>
+  <thead>
+    <th>Title</th>
+    <th>URL</th>
+    <th>Actions</th>
+  </thead>
+  <tbody>
+    <tr ng-repeat="video in dashboardCtrl.videos">
+      <td>
+        <span ng-show="!video.editing">{{video.title}}</span>
+        <input type="text" ng-model="video.updatedTitle" ng-show="video.editing"></input>
+      </td>
+      <td>
+        <span ng-show="!video.editing">{{video.url}}</span>
+        <input type="text" ng-model="video.updatedURL" ng-show="video.editing"></input>
+      </td>
+      <td>
+        <button ng-click="dashboardCtrl.destroyVideo(video._id)">X</button>
+        <button ng-show="!video.editing" ng-click="video.editing = !video.editing">Edit</button>
+        <button ng-show="video.editing" ng-click="dashboardCtrl.updateVideo(video)">Save</button>
+        <button ng-show="video.editing" ng-click="video.editing = !video.editing">Cancel</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
