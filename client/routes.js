@@ -17,7 +17,7 @@
       when('/dashboard', {
         template: '<user-dashboard></user-dashboard>'
       }).
-      when('/videos/:id', {
+      when('/users/:user_id/videos/:video_id', {
         templateUrl: 'templates/video.html',
         controller: 'videoController',
         controllerAs: 'videoCtrl'

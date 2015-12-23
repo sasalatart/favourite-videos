@@ -1,5 +1,5 @@
-var User = require('./models/user');
-var Video = require('./models/video');
+var User = require('./models/user'),
+  Video = require('./models/video');
 
 module.exports = function(app, passport) {
   app.get('/', function(req, res) {
@@ -8,16 +8,39 @@ module.exports = function(app, passport) {
     });
   });
 
-  app.post('/signup', passport.authenticate('local-signup', {
-    failureFlash: true
-  }), function(req, res) {
-    res.send(req.user);
-  });
+  app.post('/signup', function(req, res, next) {
+    passport.authenticate('local-signup', function(err, user, info) {
+      if (user) {
+        res.status(201).send({
+          user: user,
+          messages: 'Account Created'
+        });
+      } else {
+        res.status(400).send({
+          messages: info.message
+        });
+      }
+    })(req, res, next);
+  })
 
-  app.post('/login', passport.authenticate('local-login', {
-    failureFlash: true
-  }), function(req, res) {
-    res.send(req.user);
+  app.post('/login', function(req, res, next) {
+    passport.authenticate('local-login', function(err, user, info) {
+      if (user) {
+        req.logIn(user, function(err) {
+          if (err) {
+            return next(err);
+          }
+
+          res.status(200).send({
+            user: user
+          });
+        });
+      } else {
+        res.status(404).send({
+          messages: info.message
+        });
+      }
+    })(req, res, next);
   });
 
   app.get('/logout', function(req, res) {
@@ -50,9 +73,11 @@ module.exports = function(app, passport) {
   });
 
   app.get('/users/:user_id/videos/:video_id', function(req, res) {
-    var video = Video.findOne({ _id: req.params.video_id }, function(err, video) {
+    var video = Video.findOne({
+      _id: req.params.video_id
+    }, function(err, video) {
       if (err) {
-        res.status(500).json(err);
+        res.status(404).json({ messages: 'The requested video was not found' });
       } else {
         res.status(200).json(video);
       }
@@ -67,7 +92,7 @@ module.exports = function(app, passport) {
 
     newVideo.save(function(err) {
       if (err) {
-        res.status(500).json(err);
+        res.status(400).json({ messages: 'Failed to save your new video. Check if its URL is already in use' });
       } else {
         res.status(201).json(newVideo);
       }
@@ -75,15 +100,17 @@ module.exports = function(app, passport) {
   });
 
   app.put('/users/:user_id/videos/:video_id', function(req, res) {
-    Video.findOne({ _id: req.params.video_id }, function(err, video) {
+    Video.findOne({
+      _id: req.params.video_id
+    }, function(err, video) {
       if (err) {
-        res.status(500).json(err);
+        res.status(500).json({ messages: 'Failed to update your video' });
       } else {
         video.title = req.body.title;
         video.url = req.body.url;
         video.save(function(err) {
           if (err) {
-            res.status(500).json(err);
+            res.status(400).json({ messages: 'Failed to update your video. Check if its URL is already in use' });
           } else {
             res.status(200).json(video);
           }
@@ -97,7 +124,7 @@ module.exports = function(app, passport) {
       _id: req.params.video_id
     }, function(err) {
       if (err) {
-        res.status(500).json(err);
+        res.status(500).json({ messages: 'Failed to delete your video' });
       } else {
         res.status(202).json({});
       }

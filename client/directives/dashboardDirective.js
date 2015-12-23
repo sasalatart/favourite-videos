@@ -24,6 +24,7 @@
     sessionService.identity().then(function(identity) {
       if (!identity) {
         sessionService.redirectToRoot();
+        swal('Oops...', 'You have not logged in!', 'error');
       } else {
         vm.identity = identity;
 
@@ -53,7 +54,7 @@
             vm.videos.push(newVideo);
             vm.videoForm = {};
           }, function(error) {
-            console.log(error);
+            swal('Oops...', error.data.messages, 'error');
             vm.videoForm = {};
           });
         }
@@ -73,7 +74,7 @@
               updatedVideo.title = updatedVideo.updatedTitle = video.title;
               updatedVideo.url = updatedVideo.updatedURL = video.url;
             }, function(error) {
-              console.log(error);
+              swal('Oops...', error.data.messages, 'error');
             });
           });
         }
@@ -85,9 +86,9 @@
           }, function() {
             vm.videos = _.reject(vm.videos, function(video) {
               return video._id === id;
-            })
+            });
           }, function(error) {
-            console.log(error);
+            swal('Oops...', error.data.messages, 'error');
           });
         }
       }

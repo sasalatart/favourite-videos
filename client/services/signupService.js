@@ -10,10 +10,10 @@
         url: '/signup',
         data: userForm,
       }).success(function(data) {
-        alert('welcome!');
+        swal('Welcome!', data.messages, 'success');
         $window.location.href = '/#/videos';
-      }).error(function(error, data) {
-        alert('error!');
+      }).error(function(error) {
+        swal('Oops...', error.messages, 'error');
       });
     }
   }

@@ -13,10 +13,10 @@
         url: 'login',
         data: userForm
       }).success(function(data) {
-        identity(data);
+        identity(data.user);
         $window.location.href = '/#/dashboard';
       }).error(function(error, data) {
-        alert('error!');
+        swal('Oops...', error.messages, 'error');
       });
     }
 
@@ -50,10 +50,15 @@
       $window.location.href = '/#/';
     }
 
+    var redirectToDashboard = function() {
+      $window.location.href = '/#/dashboard';
+    }
+
     return {
       login,
       identity,
-      redirectToRoot
+      redirectToRoot,
+      redirectToDashboard
     }
   }
 })()
