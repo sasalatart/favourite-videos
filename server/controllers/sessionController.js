@@ -26,6 +26,14 @@ module.exports = function(passport) {
 
     getUser: function(req, res) {
       res.json(req.user);
+    },
+
+    isAuthenticated: function(req, res, next) {
+      if (req.user) {
+        return next();
+      } else {
+        res.redirect('/');
+      }
     }
   }
 }
