@@ -8,7 +8,7 @@ var express       = require('express'),
 
 var app = express();
 
-mongoose.connect('mongodb://localhost:27017/favourite-videos');
+mongoose.connect('mongodb://localhost:27017/favouriteVideos');
 
 require('./config/passport')(passport);
 

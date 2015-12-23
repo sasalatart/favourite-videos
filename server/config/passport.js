@@ -22,16 +22,20 @@ module.exports = function(passport) {
     },
     function(req, email, password, done) {
       User.findOne({
-        'local.email': email
+        'email': email
       }, function(err, user) {
         if (err) {
           return done(err);
         }
         if (user) {
           return done(null, false, { message: 'That email has already been taken' });
+        }
+        if (password !== req.body.passwordConfirmation) {
+          return done(null, false, { message: 'Your password and its confirmation do not match' });
         } else {
           var newUser = new User();
-          newUser.local.email = email;
+          newUser.email = email;
+          newUser.username = req.body.username;
           newUser.local.password = newUser.generateHash(password);
 
           newUser.save(function(err) {
@@ -52,7 +56,7 @@ module.exports = function(passport) {
     },
     function(req, email, password, done) {
       User.findOne({
-        'local.email': email
+        'email': email
       }, function(err, user) {
         if (err) {
           return done(err);
