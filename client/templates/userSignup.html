@@ -1,11 +1,11 @@
 <h1>Signup now!</h1>
 
-<form class="" ng-submit="signupCtrl.submit()">
+<form name="signupForm" ng-submit="signupForm.$valid && signupCtrl.submit()" novalidate>
   <label for="email">email</label>
-  <input id="email" name="email" ng-model="signupCtrl.userForm.email" type="text">
+  <input id="email" name="email" type="email" placeholder="user@example.com" ng-model="signupCtrl.userForm.email" required />
 
   <label for="password">password</label>
-  <input id="password" name="password" ng-model="signupCtrl.userForm.password" type="password">
+  <input id="password" name="password" type="password" ng-model="signupCtrl.userForm.password" required />
 
   <button type="submit">Signup</button>
 </form>
