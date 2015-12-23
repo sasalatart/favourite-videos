@@ -1,4 +1,10 @@
-<h1>¡Welcome!</h1>
+<div ng-show="!welcomeCtrl.identity">
+  <h1>¡Welcome!</h1>
+  <a ng-href="/#/signup">Signup</a>
+  <a ng-href="/#/login">Login</a>
+</div>
 
-<a ng-href="/#/signup">Signup</a>
-<a ng-href="/#/login">Login</a>
+<div ng-show="welcomeCtrl.identity">
+  <h1>Welcome, {{welcomeCtrl.identity.local.email}}</h1>
+  <a ng-href="/#/dashboard">Go to my dashboard</a>
+</div>

@@ -14,15 +14,17 @@
     return directive;
   }
 
-  dashboardController.$inject = ['sessionService', 'Video', '$window'];
+  dashboardController.$inject = ['sessionService', 'Video'];
 
-  function dashboardController(sessionService, Video, $window) {
+  function dashboardController(sessionService, Video) {
     var vm = this;
     vm.videoForm = {};
     vm.videos = {};
 
     sessionService.identity().then(function(identity) {
-      if (identity) {
+      if (!identity) {
+        sessionService.redirectToRoot();
+      } else {
         vm.identity = identity;
 
         vm.videos = Video.query({
@@ -88,9 +90,7 @@
             console.log(error);
           });
         }
-      } else {
-        $window.location.href = '/#/';
       }
-    })
+    });
   }
 })();

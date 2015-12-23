@@ -46,9 +46,14 @@
       return deferred.promise;
     }
 
+    var redirectToRoot = function() {
+      $window.location.href = '/#/';
+    }
+
     return {
       login,
-      identity
+      identity,
+      redirectToRoot
     }
   }
 })()

@@ -10,7 +10,9 @@
     vm.video = {};
 
     sessionService.identity().then(function(identity) {
-      if (identity) {
+      if (!identity) {
+        sessionService.redirectToRoot();
+      } else {
         Video.get({
           user_id: identity._id,
           video_id: $routeParams.id
@@ -20,9 +22,7 @@
         }, function(error) {
           console.log(error);
         });
-      } else {
-        $window.location.href = '/#/';
       }
-    })
+    });
   }
 })();

@@ -4,7 +4,9 @@
   function router($routeProvider) {
     $routeProvider.
       when('/', {
-        templateUrl: 'templates/welcome.html'
+        templateUrl: 'templates/welcome.html',
+        controller: 'welcomeController',
+        controllerAs: 'welcomeCtrl'
       }).
       when('/signup', {
         template: '<user-signup></user-signup>'

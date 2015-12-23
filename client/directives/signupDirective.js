@@ -14,15 +14,21 @@
     return directive;
   }
 
-  signupController.$inject = ['signupService'];
+  signupController.$inject = ['signupService', 'sessionService'];
 
-  function signupController(signupService) {
+  function signupController(signupService, sessionService) {
     var vm = this;
     vm.userForm = {};
 
-    vm.submit = function() {
-      signupService.signup(vm.userForm);
-      vm.userForm = {};
-    }
+    sessionService.identity().then(function(identity) {
+      if (identity) {
+        sessionService.redirectToRoot();
+      } else {
+        vm.submit = function() {
+          signupService.signup(vm.userForm);
+          vm.userForm = {};
+        }
+      }
+    })
   }
 })();

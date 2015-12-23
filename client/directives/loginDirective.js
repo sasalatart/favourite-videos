@@ -20,9 +20,15 @@
     var vm = this;
     vm.userForm = {};
 
-    vm.login = function() {
-      sessionService.login(vm.userForm);
-      vm.userForm = {};
-    }
+    sessionService.identity().then(function(identity) {
+      if (identity) {
+        sessionService.redirectToRoot();
+      } else {
+        vm.login = function() {
+          sessionService.login(vm.userForm);
+          vm.userForm = {};
+        }
+      }
+    });
   }
 })();
