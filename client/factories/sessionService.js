@@ -20,6 +20,17 @@
       });
     }
 
+    var logout = function() {
+      $http.get('/logout')
+        .success(function() {
+          $window.location.href = '/#/';
+          _identity = undefined;
+        })
+        .error(function(error, data) {
+          swal('Oops...', error.messages, 'error');
+        });
+    }
+
     var identity = function(setIdentity) {
       if (setIdentity) {
         _identity = setIdentity;
@@ -56,6 +67,7 @@
 
     return {
       login,
+      logout,
       identity,
       redirectToRoot,
       redirectToDashboard

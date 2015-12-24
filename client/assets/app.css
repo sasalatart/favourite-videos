@@ -52,6 +52,10 @@ fieldset legend {
   border: none;
 }
 
+.nav.navbar-nav.navbar-right li a {
+  cursor: pointer;
+}
+
 .ng-dirty.ng-invalid {
   border-color: #fa787e;
 }

@@ -3,7 +3,6 @@
 
   require('./filters/filters');
   require('./factories/factories');
-  require('./services/services');
   require('./controllers/controllers');
   require('./directives/directives');
   require('./routes');
