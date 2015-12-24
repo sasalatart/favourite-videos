@@ -1,17 +1,33 @@
-<h1>Signup now!</h1>
+<div class="horizontal-center vertical-center">
+  <div class="jumbotron">
+    <h1>Signup now!</h1>
 
-<form name="signupForm" ng-submit="signupForm.$valid && signupCtrl.submit()" novalidate>
-  <label for="email">email</label>
-  <input id="email" name="email" type="email" placeholder="user@example.com" ng-model="signupCtrl.userForm.email" required />
+    <form name="signupForm" ng-submit="signupForm.$valid && signupCtrl.submit()" novalidate>
+      <div class="row">
+        <div class="form-group col-xs-12 col-sm-6">
+          <label class="control-label" for="email">email</label>
+          <input class="form-control" id="email" name="email" ng-model="signupCtrl.userForm.email" placeholder="user@example.com" required type="email"/>
+        </div>
 
-  <label for="username">username</label>
-  <input id="username" name="username" type="text" placeholder="John" ng-model="signupCtrl.userForm.username" required />
+        <div class="form-group col-xs-12 col-sm-6">
+          <label class="control-label" for="username">username</label>
+          <input class="form-control" id="username" name="username" ng-model="signupCtrl.userForm.username" placeholder="John" required type="text"/>
+        </div>
+      </div>
 
-  <label for="password">password</label>
-  <input id="password" name="password" type="password" ng-model="signupCtrl.userForm.password" required />
+      <div class="row">
+        <div class="form-group col-xs-12 col-sm-6">
+          <label class="control-label" for="password">password</label>
+          <input class="form-control" id="password" name="password" ng-model="signupCtrl.userForm.password" required type="password"/>
+        </div>
 
-  <label for="passwordConfirmation">password confirmation</label>
-  <input id="passwordConfirmation" name="passwordConfirmation" type="password" ng-model="signupCtrl.userForm.passwordConfirmation" required />
+        <div class="form-group col-xs-12 col-sm-6">
+          <label class="control-label" for="passwordConfirmation">password confirmation</label>
+          <input class="form-control" id="passwordConfirmation" name="passwordConfirmation" ng-model="signupCtrl.userForm.passwordConfirmation" required type="password"/>
+        </div>
+      </div>
 
-  <button type="submit">Signup</button>
-</form>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Signup</button>
+    </form>
+  </div>
+</div>

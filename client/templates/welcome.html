@@ -1,10 +1,18 @@
-<div ng-show="!welcomeCtrl.identity">
-  <h1>¡Welcome!</h1>
-  <a ng-href="/#/signup">Signup</a>
-  <a ng-href="/#/login">Login</a>
-</div>
+<div class="horizontal-center vertical-center">
+  <div class="jumbotron">
+    <div ng-show="!welcomeCtrl.identity">
+      <h1 class="text-center">FavouriteVideos <i class="fa fa-video-camera"></i></h1>
+      <div class="horizontal-center-space-around">
+        <a class="btn btn-lg btn-primary" ng-href="/#/signup">Signup</a>
+        <a class="btn btn-lg btn-primary" ng-href="/#/login">Login</a>
+      </div>
+    </div>
 
-<div ng-show="welcomeCtrl.identity">
-  <h1>Welcome, {{welcomeCtrl.identity.local.email}}</h1>
-  <a ng-href="/#/dashboard">Go to my dashboard</a>
+    <div ng-show="welcomeCtrl.identity">
+      <h1 class="text-center">Welcome, {{welcomeCtrl.identity.username}}</h1>
+      <div class="horizontal-center">
+        <a class="btn btn-lg btn-primary" ng-href="/#/dashboard">Go to my dashboard</a>
+      </div>
+    </div>
+  </div>
 </div>

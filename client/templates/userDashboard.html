@@ -1,16 +1,22 @@
 <h1>{{dashboardCtrl.identity.username}}</h1>
 
-<form name="newVideoForm" ng-submit="newVideoForm.$valid && dashboardCtrl.newVideo()" novalidate>
-  <label for="title">title</label>
-  <input id="title" name="title" ng-model="dashboardCtrl.videoForm.title" type="text" required />
+<div class="horizontal-center">
+  <form class="form-inline" name="newVideoForm" ng-submit="newVideoForm.$valid && dashboardCtrl.newVideo()" novalidate>
+    <div class="form-group">
+      <label class="control-label" for="title">title</label>
+      <input class="form-control" id="title" name="title" ng-model="dashboardCtrl.videoForm.title" required type="text"/>
+    </div>
 
-  <label for="url">URL</label>
-  <input id="url" name="url" ng-model="dashboardCtrl.videoForm.url" type="url" required />
+    <div class="form-group">
+      <label class="control-label" for="url">URL</label>
+      <input class="form-control" id="url" name="url" ng-model="dashboardCtrl.videoForm.url" required type="url"/>
+    </div>
 
-  <button type="submit">Add video</button>
-</form>
+    <button class="btn btn-md btn-primary" ng-class="{ 'disabled': !newVideoForm.$valid }" type="submit">Add video</button>
+  </form>
+</div>
 
-<table>
+<table class="table table-hover table-bordered table-responsive">
   <thead>
     <th>Title</th>
     <th>URL</th>
@@ -20,17 +26,28 @@
     <tr ng-repeat="video in dashboardCtrl.videos">
       <td>
         <a ng-href="/#/users/{{dashboardCtrl.identity._id}}/videos/{{video._id}}" ng-show="!video.editing">{{video.title}}</a>
-        <input type="text" ng-model="video.updatedTitle" ng-show="video.editing"></input>
+        <input class="form-control" ng-model="video.updatedTitle" ng-show="video.editing" type="text"></input>
       </td>
       <td>
         <span ng-show="!video.editing">{{video.url}}</span>
-        <input type="text" ng-model="video.updatedURL" ng-show="video.editing"></input>
+        <input class="form-control" ng-model="video.updatedURL" ng-show="video.editing" type="text"></input>
       </td>
       <td>
-        <button ng-click="dashboardCtrl.destroyVideo(video._id)">X</button>
-        <button ng-show="!video.editing" ng-click="video.editing = !video.editing">Edit</button>
-        <button ng-show="video.editing" ng-click="dashboardCtrl.updateVideo(video)">Save</button>
-        <button ng-show="video.editing" ng-click="video.editing = !video.editing">Cancel</button>
+        <a class="btn btn-md btn-success" ng-href="/#/users/{{dashboardCtrl.identity._id}}/videos/{{video._id}}" ng-show="!video.editing">
+          <i class="fa fa-play"></i>
+        </a>
+        <button class="btn btn-md btn-warning" ng-click="video.editing = !video.editing" ng-show="!video.editing">
+          <i class="fa fa-pencil-square-o"></i>
+        </button>
+        <button class="btn btn-md btn-danger" ng-click="dashboardCtrl.destroyVideo(video._id)" ng-show="!video.editing">
+          <i class="fa fa-times"></i>
+        </button>
+        <button class="btn btn-md btn-success" ng-click="dashboardCtrl.updateVideo(video)" ng-show="video.editing">
+          <i class="fa fa-floppy-o"></i>
+        </button>
+        <button class="btn btn-md btn-default" ng-click="video.editing = !video.editing" ng-show="video.editing">
+          <i class="fa fa-ban"></i>
+        </button>
       </td>
     </tr>
   </tbody>

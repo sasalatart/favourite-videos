@@ -1,3 +1,39 @@
+.horizontal-center {
+  display: flex;
+  justify-content: center;
+}
+
+.horizontal-center-space-around {
+  display: flex;
+  justify-content: space-around;
+}
+
+.vertical-center {
+  min-height: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.form-inline {
+  margin: 2em 0;
+}
+
+table,
+.table,
+table>thead>tr>th,
+.table>thead>tr>th,
+table>tbody>tr>th,
+.table>tbody>tr>th,
+table>thead>tr>td,
+.table>thead>tr>td,
+table>tbody>tr>td,
+.table>tbody>tr>td {
+  text-align: center;
+  vertical-align: middle;
+  border-color: white;
+}
+
 .ng-dirty.ng-invalid {
   border-color: #fa787e;
 }
