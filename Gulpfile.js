@@ -7,7 +7,7 @@ gulp.task('build', function() {
       insertGlobals : true,
       debug : !gulp.env.production
     }))
-    .pipe(gulp.dest('client/bin/'))
+    .pipe(gulp.dest('client/assets/'));
 });
 
 gulp.task('watch', function() {

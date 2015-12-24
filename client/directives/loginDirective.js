@@ -6,7 +6,7 @@
   function userLogin() {
     var directive = {
       restrict: 'E',
-      templateUrl: '../templates/userLogin.html',
+      templateUrl: 'userLogin.html',
       controller: 'loginController',
       controllerAs: 'loginCtrl'
     }

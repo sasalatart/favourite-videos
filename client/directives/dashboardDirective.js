@@ -6,7 +6,7 @@
   function userDashboard() {
     var directive = {
       restrict: 'E',
-      templateUrl: '../templates/userDashboard.html',
+      templateUrl: 'userDashboard.html',
       controller: 'dashboardController',
       controllerAs: 'dashboardCtrl'
     }

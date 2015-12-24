@@ -3,7 +3,7 @@ var User  = require('./models/user'),
 
 module.exports = function(app, passport) {
   app.get('/', function(req, res) {
-    res.sendFile('client/index.html', {
+    res.sendFile('client/templates/index.html', {
       'root': '../favourite-videos'
     });
   });

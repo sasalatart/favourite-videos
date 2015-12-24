@@ -4,7 +4,7 @@
   function router($routeProvider) {
     $routeProvider.
       when('/', {
-        templateUrl: 'templates/welcome.html',
+        templateUrl: 'welcome.html',
         controller: 'welcomeController',
         controllerAs: 'welcomeCtrl'
       }).
@@ -18,7 +18,7 @@
         template: '<user-dashboard></user-dashboard>'
       }).
       when('/users/:user_id/videos/:video_id', {
-        templateUrl: 'templates/video.html',
+        templateUrl: 'video.html',
         controller: 'videoController',
         controllerAs: 'videoCtrl'
       }).

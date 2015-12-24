@@ -26,7 +26,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/bower_components',  express.static('bower_components'));
-app.use(express.static('client'));
+app.use(express.static('client/assets'));
+app.use(express.static('client/templates'));
 
 require('./routes')(app, passport);
 

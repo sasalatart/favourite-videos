@@ -6,7 +6,7 @@
   function navBar() {
     var directive = {
       restrict: 'E',
-      templateUrl: '../templates/navBar.html',
+      templateUrl: 'navBar.html',
       controller: 'navbarController',
       controllerAs: 'navbarCtrl'
     }
