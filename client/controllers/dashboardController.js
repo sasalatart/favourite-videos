@@ -8,7 +8,7 @@
   function dashboardController(sessionService, Video) {
     var vm = this;
     vm.videoForm = {};
-    vm.videos = {};
+    vm.videos = [];
 
     sessionService.identity().then(function(identity) {
       if (!identity) {
@@ -17,17 +17,15 @@
       } else {
         vm.identity = identity;
 
-        vm.videos = Video.query({
+        Video.query({
           user_id: identity._id
-        });
-        vm.videos.$promise.then(function(videos) {
-          _.map(videos, function(video) {
+        }).$promise.then(function(videos) {
+          _.each(videos, function(video) {
             video.editing = false;
             video.updatedTitle = video.title;
             video.updatedURL = video.url;
-            return video;
+            vm.videos.push(video)
           });
-          vm.videos = videos;
         });
 
         vm.newVideo = function() {

@@ -34,6 +34,24 @@ table>tbody>tr>td,
   border-color: white;
 }
 
+fieldset {
+  display: block;
+  border: 2px groove;
+  border-radius: 4px;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+fieldset legend {
+  display: block;
+  width: auto;
+  font-size: 14px;
+  font-weight: bold;
+  padding-left: 2px;
+  padding-right: 2px;
+  border: none;
+}
+
 .ng-dirty.ng-invalid {
   border-color: #fa787e;
 }
