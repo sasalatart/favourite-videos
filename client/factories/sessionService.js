@@ -57,6 +57,10 @@
       return deferred.promise;
     }
 
+    var getIdentity = function() {
+      return _identity;
+    }
+
     var redirectToRoot = function() {
       $window.location.href = '/#/';
     }
@@ -69,6 +73,7 @@
       login,
       logout,
       identity,
+      getIdentity,
       redirectToRoot,
       redirectToDashboard
     }

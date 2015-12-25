@@ -7,6 +7,7 @@
 
   function navbarController(sessionService) {
     var vm = this;
+    vm.sessionService = sessionService;
 
     vm.logout = function() {
       sessionService.logout();
