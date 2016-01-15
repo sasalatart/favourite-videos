@@ -1,0 +1,13 @@
+mongo_db:
+  image: mongo:3.2.1
+
+web:
+  build: .
+  command: npm start
+  ports:
+    - '80:8888'
+  links:
+    - mongo_db
+  environment:
+    - COOKIE_SECRET
+    - SESSION_SECRET

@@ -8,17 +8,19 @@ var express       = require('express'),
 
 var app = express();
 
-mongoose.connect('mongodb://localhost:27017/favouriteVideos');
+var DB_HOST = process.env.DATABASE_HOST || 'mongo_db';
+var DB_PORT = process.env.DATABASE_PORT || '27017';
+mongoose.connect('mongodb://' + DB_HOST + ':' + DB_PORT + '/favouriteVideos');
 
 require('./config/passport')(passport);
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(cookieParser(process.env.SECRET));
+app.use(cookieParser(process.env.COOKIE_SECRET || 'napoleon'));
 app.use(session({
   cookie: { maxAge: 3000000 },
-  secret: process.env.SECRET,
+  secret: process.env.SESSION_SECRET || 'napoleon',
   saveUninitialized: true,
   resave: true
 }));
@@ -31,5 +33,5 @@ app.use(express.static('client/templates'));
 
 require('./routes')(app, passport);
 
-app.listen(3000);
-console.log('Listening on port 3000!');
+app.listen(8888);
+console.log('Listening on port 8888!');

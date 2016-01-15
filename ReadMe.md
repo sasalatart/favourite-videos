@@ -4,20 +4,39 @@
 
 ### Setup
 
-#### Prerequisites
+##### Development
 
-* NodeJS
-* Bower
-* MongoDB
+1. Make sure that at least [NodeJS](https://nodejs.org/en/),
+[Bower](http://bower.io/) and [MongoDB](https://www.mongodb.org/) are installed.
+2. Clone and cd into this repository
+3. Run `npm install`
+4. Run `bower install`
+5. Set the environment variables:
+  - COOKIE_SECRET ('napoleon' should work)
+  - SESSION_SECRET ('napoleon' should work)
+  - DATABASE_HOST ('localhost' should work)
+  - DATABASE_PORT ('27017' should work)
+6. Open another shell instance and run `mongod`
+7. Run `npm start`
 
-#### Development
+##### Docker
 
-1. Clone this repository.
-2. Run `npm install`
-3. Run `bower install`
-4. Set the environment variable `SECRET` by either:
-  * Running `export SECRET=anystring` in the shell for a temporary setup.
-  * Writing `export SECRET=anystring` in the shell's configuration file for its
-    persistance (remember to reopen the shell after doing so).
-5. Open another shell instance and run `mongod`
-6. Run `npm start`
+```sh
+# Set the SECRET environment variables
+$ export COOKIE_SECRET=anystring
+$ export SESSION_SECRET=anystring
+
+# Build
+$ docker-compose build
+
+# Run
+$ docker-compose up -d
+```
+
+The server's machine should now be redirecting its port 80 to the container's
+port 8888.
+
+To stop:
+```sh
+$ docker-compose stop
+```
